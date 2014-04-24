@@ -1,0 +1,78 @@
+//File: Rock Paper Scissors
+//Author: Lisa Huang
+//Date: 4/23/14
+
+var userChoice = prompt("Do you choose rock, paper or scissors?");
+
+var computerChoice;
+
+var computerAnswer = function() {
+    computerChoice = Math.random();
+    if (computerChoice < 0.34) {
+        computerChoice = "rock";
+    }
+    else if(computerChoice <= 0.67) {
+        computerChoice = "paper";
+    } 
+    else {
+	computerChoice = "scissors";
+    }
+    console.log("Computer: " + computerChoice);
+};
+
+var answer = function(choice) {
+    if (choice === "rock" || choice === "paper" || choice === "scissors") {
+        console.log("User: " + choice);
+        computerAnswer();
+        compare(choice, computerChoice);
+    }
+    else {
+        choice = prompt("Please pick 'rock', 'paper', or 'scissors'!");
+        answer(choice);
+    }
+};
+
+var tie = function() {
+    if (confirm("Want to play again?")) {
+        userChoice = prompt("Rock, paper, or scissors?");
+        //computerAnswer();
+        answer(userChoice);
+    }
+    else {
+        console.log("Good game!");
+    }
+};
+
+var compare = function(choice1, choice2) {
+    if (choice1 === choice2){
+        console.log("The result is a tie!");
+        tie();
+    }
+    else if (choice1 === "rock") {
+        if (choice2 === "scissors") {
+            console.log("User wins!");
+        }
+        else {
+            console.log("Computer wins!");
+        }
+    }
+    else if (choice1 === "paper") {
+        if (choice2 === "rock") {
+            console.log("User wins!");
+        }
+        else {
+            console.log("Computer wins!");
+        }
+    }
+    else if (choice1 === "scissors") {
+        if (choice2 === "rock") {
+            console.log("Computer wins!");
+        }
+        else {
+            console.log("User win!");
+        }
+    }
+};
+
+answer(userChoice);
+//compare(userChoice, computerChoice);
